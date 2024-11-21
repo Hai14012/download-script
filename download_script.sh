@@ -1,4 +1,29 @@
-echo -n "Nhập số lần nhân bản (1-10): " && read clone_count && \
+#!/bin/bash
+
+# Kiểm tra và cài đặt curl nếu chưa có
+if ! command -v curl &> /dev/null
+then
+    echo "curl chưa được cài đặt. Đang cài đặt..."
+    pkg update -y
+    pkg install -y curl
+else
+    echo "curl đã được cài đặt."
+fi
+
+# Kiểm tra và cài đặt bash nếu chưa có
+if ! command -v bash &> /dev/null
+then
+    echo "bash chưa được cài đặt. Đang cài đặt..."
+    pkg install -y bash
+else
+    echo "bash đã được cài đặt."
+fi
+
+# Yêu cầu nhập số lần nhân bản
+echo -n "Nhập số lần nhân bản (1-10): "
+read clone_count
+
+# Lặp qua danh sách các URL
 for url in \
 "https://www.mediafire.com/file/4a178ekxwt4beni/bin-mt-plus-23122788-66776205-eb43f1e92515e854d870bfc34c8bdf65.apk/file" \
 "https://www.mediafire.com/file/hjkzhc03h5mdxqe/com-mod-floating-apps-apk-mod-4-14-premium-141402012.apk/file" \
